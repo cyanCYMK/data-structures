@@ -6,7 +6,7 @@ var Graph = function(){
 };
 
 Graph.prototype.addNode = function(node){
-  var newNode = new Node(node);
+  var newNode = new GraphNode(node);
   this.storage[node] = newNode;
 };
 
@@ -43,7 +43,7 @@ Graph.prototype.forEachNode = function(cb){
   }
 };
 
-var Node = function(value) {
+var GraphNode = function(value) {
   this.value = value;
   this.edges = {};
 }
