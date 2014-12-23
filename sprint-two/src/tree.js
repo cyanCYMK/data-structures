@@ -9,10 +9,6 @@ var Tree = function(value){
   return newTree;
 };
 
-
-
-
-
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
@@ -25,7 +21,6 @@ treeMethods.contains = function(target){
     if (target === tree.value){
       return true;
     }
-    //debugger;
     var length = tree.children.length;
     for (var i = 0; i < length; i++){
       if (search(tree.children[i])){
