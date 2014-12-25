@@ -2,7 +2,6 @@
 
 var Graph = function(){
   this.storage = {};
-
 };
 
 Graph.prototype.addNode = function(node){
@@ -18,23 +17,27 @@ Graph.prototype.contains = function(node){
 };
 
 Graph.prototype.removeNode = function(node){
+  var deleted = this.storage[node];
   delete this.storage[node];
+  return deleted.value;
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
-  if (this.storage[fromNode].edges[toNode] === toNode){
-    return true;
+  if( this.storage[fromNode].edges[toNode] === undefined ){
+    return false;
   }
-  return false;
+  return true;
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-  this.storage[fromNode].edges[toNode] = toNode;
-  this.storage[toNode].edges[fromNode] = fromNode;
+  this.storage[fromNode].edges[toNode] = this.storage[toNode];
+  this.storage[toNode].edges[fromNode] = this.storage[fromNode];
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
   // test does not actually perform this function???
+  delete this.storage[fromNode].edges[toNode];
+  delete this.storage[toNode].edges[fromNode];
 };
 
 Graph.prototype.forEachNode = function(cb){
